@@ -1,1 +1,3 @@
-import './data.js';
+import { getAds } from './data.js';
+
+getAds();
