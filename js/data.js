@@ -1,4 +1,4 @@
-import { getRandomInt, getRandomArrayElement, getRandomArrValues, generateRandomFloat } from './utils.js';
+import { getRandomInt, getRandomArrayElement, getRandomArrValues, generateRandomFloat, getRandomUniqueArrValues } from './utils.js';
 
 const AVATAR_COUNT = 10;
 const PRICE_MIN = 10000;
