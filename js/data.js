@@ -96,11 +96,14 @@ const createLocation = () => ({
   lng: generateRandomFloat(LONGITUDE_MIN, LONGITUDE_MAX, DECIMAL_PLACES),
 });
 
-const createAd = () => ({
-  author: createAuthor(),
-  offer: createOffer(location),
-  location: createLocation(),
-});
+const createAd = () => {
+  const location = createLocation();
+  return {
+    author: createAuthor(),
+    offer: createOffer(location),
+    location,
+  };
+};
 
 const getAds = () => Array.from({ length: AD_COUNT}, () => createAd());
 
