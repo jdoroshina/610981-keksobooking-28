@@ -1,4 +1,4 @@
 import { getAds } from './data.js';
-import './popup.js';
+import { renderPopups } from './popup.js';
 
-getAds();
+renderPopups(getAds());
