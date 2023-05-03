@@ -33,3 +33,5 @@ const switchFilterFormOn = () => {
     fieldset.disabled = false;
   });
 };
+
+export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn };
