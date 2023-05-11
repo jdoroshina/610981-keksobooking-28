@@ -74,6 +74,17 @@ const switchFilterFormOn = () => {
   });
 };
 
+// Зависимость времени заселения и выселения
+const onTimeInChange = () => {
+  timeOutElement.value = timeInElement.value;
+};
+const onTimeOutChange = () => {
+  timeInElement.value = timeOutElement.value;
+};
+
+timeInElement.addEventListener('change', onTimeInChange);
+timeOutElement.addEventListener('change', onTimeOutChange);
+
 // Проверка цены в зависимости от выбранного типа жилья
 const priceCheck = (value) => Number.parseInt(value, 10) >= mapAccomodationTypeToPrice[typeElement.value];
 const getPriceErrorMessage = () => `Стоимость должна быть выше ${mapAccomodationTypeToPrice[typeElement.value]}`;
