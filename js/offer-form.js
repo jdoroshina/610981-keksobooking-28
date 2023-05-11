@@ -141,4 +141,10 @@ const onGuestsNumberChange = () => {
 roomElement.addEventListener('change', onRoomNumberChange);
 capacityElement.addEventListener('change', onGuestsNumberChange);
 
+offerForm.addEventListener('submit', (evt) => {
+  if (!pristine.validate()) {
+    evt.preventDefault();
+  }
+});
+
 export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn };
