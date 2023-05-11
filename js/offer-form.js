@@ -31,6 +31,8 @@ const roomElement = offerForm.querySelector('#room_number');
 const priceElement = offerForm.querySelector('#price');
 const typeElement = offerForm.querySelector('#type');
 
+priceElement.placeholder = mapAccomodationTypeToPrice[typeElement.value];
+
 const pristine = new Pristine(offerForm,
   {
     classTo: 'ad-form__element',
@@ -71,5 +73,25 @@ const switchFilterFormOn = () => {
     fieldset.disabled = false;
   });
 };
+
+// Проверка цены в зависимости от выбранного типа жилья
+const priceCheck = (value) => Number.parseInt(value, 10) >= mapAccomodationTypeToPrice[typeElement.value];
+const getPriceErrorMessage = () => `Стоимость должна быть выше ${mapAccomodationTypeToPrice[typeElement.value]}`;
+
+pristine.addValidator(
+  priceElement,
+  priceCheck,
+  getPriceErrorMessage,
+);
+const onPriceCheck = () => pristine.validate(priceElement);
+
+priceElement.addEventListener('change', onPriceCheck);
+typeElement.addEventListener('change', onPriceCheck);
+
+const onTypeElementChange = () => {
+  priceElement.placeholder = mapAccomodationTypeToPrice[typeElement.value];
+};
+
+typeElement.addEventListener('change', onTypeElementChange);
 
 export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn };
