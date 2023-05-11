@@ -1,3 +1,23 @@
+const mapRoomsToGuests = {
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0']
+};
+const mapGuestsToRoom = {
+  1: ['1', '2', '3 комнаты'],
+  2: ['1', '2 комнаты'],
+  3: ['3 комнаты'],
+  0: ['100 комнат']
+};
+
+const mapAccomodationTypeToPrice = {
+  bungaTow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000
+};
 const offerForm = document.querySelector('.ad-form');
 const offerFormFieldsets = offerForm.querySelectorAll('fieldset');
 const offerFormSlider = offerForm.querySelector('.ad-form__slider');
