@@ -18,11 +18,19 @@ const mapAccomodationTypeToPrice = {
   house: 5000,
   palace: 10000
 };
+
 const offerForm = document.querySelector('.ad-form');
+const capacityElement = offerForm.querySelector('#capacity');
 const offerFormFieldsets = offerForm.querySelectorAll('fieldset');
 const offerFormSlider = offerForm.querySelector('.ad-form__slider');
 const filterForm = document.querySelector('.map__filters');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
+const timeInElement = offerForm.querySelector('#timein');
+const timeOutElement = offerForm.querySelector('#timeout');
+const roomElement = offerForm.querySelector('#room_number');
+const priceElement = offerForm.querySelector('#price');
+const typeElement = offerForm.querySelector('#type');
+
 const pristine = new Pristine(offerForm,
   {
     classTo: 'ad-form__element',
