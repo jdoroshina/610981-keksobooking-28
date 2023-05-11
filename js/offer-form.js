@@ -105,4 +105,40 @@ const onTypeElementChange = () => {
 
 typeElement.addEventListener('change', onTypeElementChange);
 
+// Проверка количества комнат и количества гостей
+const capacityCheck = () => mapRoomsToGuests[roomElement.value].includes(capacityElement.value);
+const getСapacityElementErrorMessage = () => `Для такого количества гостей подойдёт ${mapGuestsToRoom[capacityElement.value].join(' или ')}`;
+
+pristine.addValidator(
+  capacityElement,
+  capacityCheck,
+  getСapacityElementErrorMessage
+);
+
+const getRoomElementErrorMessage = () => {
+  if (roomElement.value === '100') {
+    return 'Комнаты не для гостей';
+  }
+  return 'Для такого количества гостей нужно больше комнат';
+};
+
+pristine.addValidator(
+  roomElement,
+  capacityCheck,
+  getRoomElementErrorMessage
+);
+
+const onRoomNumberChange = () => {
+  pristine.validate(capacityElement);
+  pristine.validate(roomElement);
+};
+
+const onGuestsNumberChange = () => {
+  pristine.validate(capacityElement);
+  pristine.validate(roomElement);
+};
+
+roomElement.addEventListener('change', onRoomNumberChange);
+capacityElement.addEventListener('change', onGuestsNumberChange);
+
 export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn };
