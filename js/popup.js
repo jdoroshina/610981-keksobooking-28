@@ -10,8 +10,6 @@ const popupTemplate = document
   .querySelector('#card')
   .content.querySelector('.popup');
 
-const container = document.querySelector('#map-canvas');
-
 const createPopup = ({author, offer}) => {
   const popup = popupTemplate.cloneNode(true);
 
@@ -54,14 +52,4 @@ const createPopup = ({author, offer}) => {
   return popup;
 };
 
-const renderPopups = (popups) => {
-  const fragment = document.createDocumentFragment();
-  popups.forEach((popup) => {
-    const popupItem = createPopup(popup);
-    fragment.append(popupItem);
-  });
-
-  container.append(fragment);
-};
-
-export { renderPopups };
+export { createPopup };

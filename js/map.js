@@ -1,4 +1,4 @@
-import { renderPopups } from './popup.js';
+import { createPopup } from './popup.js';
 
 const DEFAULT_ZOOM = 13;
 const DefaultCoordinate = {
@@ -77,7 +77,7 @@ const setOfferPinMarker = (offers) => {
     );
     offerMarker
       .addTo(regularPinsGroup)
-      .bindPopup(renderPopups(offers));
+      .bindPopup(createPopup(offer));
   });
 };
 
