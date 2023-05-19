@@ -1,3 +1,5 @@
+const MAX_PRICE = 10000;
+
 const mapRoomsToGuests = {
   1: ['1'],
   2: ['1', '2'],
@@ -29,6 +31,7 @@ const timeInElement = offerForm.querySelector('#timein');
 const timeOutElement = offerForm.querySelector('#timeout');
 const roomElement = offerForm.querySelector('#room_number');
 const priceElement = offerForm.querySelector('#price');
+const priceSliderElement = offerForm.querySelector('.ad-form__slider');
 const typeElement = offerForm.querySelector('#type');
 
 priceElement.placeholder = mapAccomodationTypeToPrice[typeElement.value];
@@ -105,6 +108,18 @@ const onTypeElementChange = () => {
 
 typeElement.addEventListener('change', onTypeElementChange);
 
+// Слайдер для инпута с ценой
+
+noUiSlider.create(priceSliderElement, {
+  range: {
+    min: 0,
+    max: MAX_PRICE,
+  },
+  start: 1000,
+  step: 500,
+  connect: 'lower',
+});
+
 // Проверка количества комнат и количества гостей
 const capacityCheck = () => mapRoomsToGuests[roomElement.value].includes(capacityElement.value);
 const getСapacityElementErrorMessage = () => `Для такого количества гостей подойдёт ${mapGuestsToRoom[capacityElement.value].join(' или ')}`;
@@ -147,4 +162,4 @@ offerForm.addEventListener('submit', (evt) => {
   }
 });
 
-export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn };
+export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn, };
