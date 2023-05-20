@@ -1,4 +1,4 @@
-const MAX_PRICE = 10000;
+const MAX_PRICE = 100000;
 
 const mapRoomsToGuests = {
   1: ['1'],
@@ -14,7 +14,7 @@ const mapGuestsToRoom = {
 };
 
 const mapAccomodationTypeToPrice = {
-  bungaTow: 0,
+  bungalow: 0,
   flat: 1000,
   hotel: 3000,
   house: 5000,
@@ -118,7 +118,40 @@ noUiSlider.create(priceSliderElement, {
   start: 1000,
   step: 500,
   connect: 'lower',
+  format: {
+    to: function (value) {
+      return parseInt(value, 10);
+    },
+    from: function (value) {
+      return parseInt(value, 10);
+    },
+  }
 });
+
+priceSliderElement.noUiSlider.on('update', () => {
+  priceElement.value = priceSliderElement.noUiSlider.get();
+  pristine.validate(priceElement);
+});
+
+const onPriceChange = () => {
+  priceSliderElement.noUiSlider.set(priceElement.value);
+};
+
+priceElement.addEventListener('input', onPriceChange);
+
+const onTypeElementChangeSlider = () => {
+  priceSliderElement.noUiSlider.updateOptions({
+    range: {
+      min: mapAccomodationTypeToPrice[typeElement.value],
+      max: MAX_PRICE
+    },
+    start: mapAccomodationTypeToPrice[typeElement.value],
+    step: 500
+  });
+  priceSliderElement.noUiSlider.set(priceElement.value);
+};
+
+typeElement.addEventListener('change', onTypeElementChangeSlider);
 
 // Проверка количества комнат и количества гостей
 const capacityCheck = () => mapRoomsToGuests[roomElement.value].includes(capacityElement.value);
