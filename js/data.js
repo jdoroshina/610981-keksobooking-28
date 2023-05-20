@@ -10,7 +10,7 @@ const LATITUDE_MAX = 35.70000;
 const LONGITUDE_MIN = 139.70000;
 const LONGITUDE_MAX = 139.80000;
 const DECIMAL_PLACES = 5;
-// const AD_COUNT = 10;
+const AD_COUNT = 10;
 
 const TITLES = [
   'Уютное гнездышко',
@@ -101,6 +101,6 @@ const createAd = () => {
   };
 };
 
-const getAds = (count) => Array.from({ length: count}, () => createAd());
+const getAds = () => Array.from({ length: AD_COUNT}, () => createAd());
 
 export { getAds };
