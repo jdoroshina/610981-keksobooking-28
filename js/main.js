@@ -3,18 +3,15 @@ import { initMap, setStartAddress, setOnMapLoad, setOfferPinMarker } from './map
 import { showAlertMessage } from './show-message.js';
 import { getData } from './api.js';
 
-switchOfferFormOff();
-switchFilterFormOff();
-initMap();
-
 const onGetDataSuccess = (offers) => {
   switchFilterFormOn();
   setOfferPinMarker(offers);
 };
 
-setOnMapLoad(() => {
-  switchOfferFormOn();
-  getData(onGetDataSuccess, showAlertMessage);
-});
-
+switchOfferFormOff();
+switchFilterFormOff();
+getData(onGetDataSuccess, showAlertMessage);
+initMap();
+setOnMapLoad();
+switchOfferFormOn();
 setStartAddress();
