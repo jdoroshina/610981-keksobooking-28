@@ -1,12 +1,14 @@
+import { resetMap, resetCommonPins, setStartAddress } from './map.js';
+
 const MAX_PRICE = 100000;
 
-const mapRoomsToGuests = {
+const mapCountRoomsToCountGuests = {
   1: ['1'],
   2: ['1', '2'],
   3: ['1', '2', '3'],
   100: ['0']
 };
-const mapGuestsToRoom = {
+const mapCountGuestsToCountRooms = {
   1: ['1', '2', '3 комнаты'],
   2: ['2', '3 комнаты'],
   3: ['3 комнаты'],
@@ -27,6 +29,8 @@ const offerFormFieldsets = offerForm.querySelectorAll('fieldset');
 const offerFormSlider = offerForm.querySelector('.ad-form__slider');
 const filterForm = document.querySelector('.map__filters');
 const filterFormFieldsets = filterForm.querySelectorAll('fieldset');
+const formSubmitButton = offerForm.querySelector('.ad-form__submit');
+const formResetButton = offerForm.querySelector('.ad-form__reset');
 const timeInElement = offerForm.querySelector('#timein');
 const timeOutElement = offerForm.querySelector('#timeout');
 const roomElement = offerForm.querySelector('#room_number');
@@ -154,8 +158,8 @@ const onTypeElementChangeSlider = () => {
 typeElement.addEventListener('change', onTypeElementChangeSlider);
 
 // Проверка количества комнат и количества гостей
-const capacityCheck = () => mapRoomsToGuests[roomElement.value].includes(capacityElement.value);
-const getСapacityElementErrorMessage = () => `Для такого количества гостей подойдёт ${mapGuestsToRoom[capacityElement.value].join(' или ')}`;
+const capacityCheck = () => mapCountRoomsToCountGuests[roomElement.value].includes(capacityElement.value);
+const getСapacityElementErrorMessage = () => `Для такого количества гостей подойдёт ${mapCountGuestsToCountRooms[capacityElement.value].join(' или ')}`;
 
 pristine.addValidator(
   capacityElement,
@@ -195,4 +199,45 @@ offerForm.addEventListener('submit', (evt) => {
   }
 });
 
-export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn, };
+//Сброс формы
+const setOnFormReset = () => {
+  offerForm.reset();
+  filterForm.reset();
+  priceSliderElement.noUiSlider.reset();
+};
+
+const setOnResetButton = (offers) => {
+  formResetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    setOnFormReset();
+    pristine.reset();
+    resetMap();
+    setStartAddress();
+    resetCommonPins(offers);
+  });
+};
+
+//Отправка формы
+
+const blockSubmitButton = () => {
+  formSubmitButton.disabled = true;
+  formSubmitButton.textContent = 'Публикация...';
+};
+
+const unblockSubmitButton = () => {
+  formSubmitButton.disabled = false;
+  formSubmitButton.textContent = 'Опубликовать';
+};
+
+const setOnOfferFormSubmit = (cb) => {
+  offerForm.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    if (pristine.validate()) {
+      blockSubmitButton();
+      await cb(new FormData(offerForm));
+      unblockSubmitButton();
+    }
+  });
+};
+
+export { switchOfferFormOff, switchOfferFormOn, switchFilterFormOff, switchFilterFormOn, setOnOfferFormSubmit, setOnFormReset, setOnResetButton };

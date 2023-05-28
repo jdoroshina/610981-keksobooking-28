@@ -25,4 +25,7 @@ const generateRandomFloat = (minValue, maxValue, decimalPlaces) => {
   return randomValue.toFixed(decimalPlaces);
 };
 
-export { getRandomInt, getRandomArrayElement, getRandomArrValues, getRandomUniqueArrValues, generateRandomFloat };
+
+const isEscKey = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export { getRandomInt, getRandomArrayElement, getRandomArrValues, getRandomUniqueArrValues, generateRandomFloat, isEscKey };

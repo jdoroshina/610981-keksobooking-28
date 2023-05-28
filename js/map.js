@@ -89,4 +89,21 @@ const initMap = () => {
   setAddressOnPinMove();
 };
 
-export { initMap, setStartAddress, setOnMapLoad, setOfferPinMarker };
+const resetMap = () => {
+  map.closePopup();
+  map.setView({
+    lat: DefaultCoordinate.lat,
+    lng: DefaultCoordinate.lng
+  }, DEFAULT_ZOOM);
+  mainPinMarker.setLatLng({
+    lat: DefaultCoordinate.lat,
+    lng: DefaultCoordinate.lng
+  });
+};
+
+const resetCommonPins = (offers) => {
+  regularPinsGroup.clearLayers();
+  setOfferPinMarker(offers);
+};
+
+export { initMap, setStartAddress, setOnMapLoad, setOfferPinMarker, resetMap, resetCommonPins };
