@@ -1,4 +1,4 @@
-import { resetMap, resetCommonPins, setStartAddress } from './map.js';
+import { resetMap, resetRegularPins, setStartAddress } from './map.js';
 
 const MAX_PRICE = 100000;
 
@@ -213,7 +213,7 @@ const setOnResetButton = (offers) => {
     pristine.reset();
     resetMap();
     setStartAddress();
-    resetCommonPins(offers);
+    resetRegularPins(offers);
   });
 };
 

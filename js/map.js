@@ -101,9 +101,9 @@ const resetMap = () => {
   });
 };
 
-const resetCommonPins = (offers) => {
+const resetRegularPins = (offers) => {
   regularPinsGroup.clearLayers();
   setOfferPinMarker(offers);
 };
 
-export { initMap, setStartAddress, setOnMapLoad, setOfferPinMarker, resetMap, resetCommonPins };
+export { initMap, setStartAddress, setOnMapLoad, setOfferPinMarker, resetMap, resetRegularPins };
