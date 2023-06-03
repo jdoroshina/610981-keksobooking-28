@@ -160,12 +160,12 @@ const onTypeElementChangeSlider = () => {
 typeElement.addEventListener('change', onTypeElementChangeSlider);
 
 // Проверка количества комнат и количества гостей
-const capacityCheck = () => mapCountRoomsToCountGuests[roomElement.value].includes(capacityElement.value);
+const checkCapacity = () => mapCountRoomsToCountGuests[roomElement.value].includes(capacityElement.value);
 const getСapacityElementErrorMessage = () => `Для такого количества гостей подойдёт ${mapCountGuestsToCountRooms[capacityElement.value].join(' или ')}`;
 
 pristine.addValidator(
   capacityElement,
-  capacityCheck,
+  checkCapacity,
   getСapacityElementErrorMessage
 );
 
@@ -178,7 +178,7 @@ const getRoomElementErrorMessage = () => {
 
 pristine.addValidator(
   roomElement,
-  capacityCheck,
+  checkCapacity,
   getRoomElementErrorMessage
 );
 

@@ -2,8 +2,8 @@ import { createPopup } from './popup.js';
 
 const DEFAULT_ZOOM = 13;
 const DefaultCoordinate = {
-  lat: 35.683171,
-  lng: 139.753143,
+  LAT: 35.683171,
+  LNG: 139.753143,
 };
 
 const map = L.map('map-canvas');
@@ -13,8 +13,8 @@ addressElement.readOnly = true;
 
 const setMap = () => {
   map.setView({
-    lat: DefaultCoordinate.lat,
-    lng: DefaultCoordinate.lng
+    lat: DefaultCoordinate.LAT,
+    lng: DefaultCoordinate.LNG
   }, DEFAULT_ZOOM);
 
   L.tileLayer(
@@ -34,8 +34,8 @@ const mainPinIcon = L.icon({
 
 const mainPinMarker = L.marker(
   {
-    lat: DefaultCoordinate.lat,
-    lng: DefaultCoordinate.lng
+    lat: DefaultCoordinate.LAT,
+    lng: DefaultCoordinate.LNG
   },
   {
     draggable: true,
@@ -54,7 +54,7 @@ const setMainPinMarker = () => mainPinMarker.addTo(map);
 const regularPinsGroup = L.layerGroup().addTo(map);
 
 const setStartAddress = () => {
-  addressElement.value = `${DefaultCoordinate.lat}, ${DefaultCoordinate.lng}`;
+  addressElement.value = `${DefaultCoordinate.LAT}, ${DefaultCoordinate.LNG}`;
 };
 
 const setAddressOnPinMove = () => {
@@ -92,12 +92,12 @@ const initMap = () => {
 const resetMap = () => {
   map.closePopup();
   map.setView({
-    lat: DefaultCoordinate.lat,
-    lng: DefaultCoordinate.lng
+    lat: DefaultCoordinate.LAT,
+    lng: DefaultCoordinate.LNG
   }, DEFAULT_ZOOM);
   mainPinMarker.setLatLng({
-    lat: DefaultCoordinate.lat,
-    lng: DefaultCoordinate.lng
+    lat: DefaultCoordinate.LAT,
+    lng: DefaultCoordinate.LNG
   });
 };
 

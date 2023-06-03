@@ -1,5 +1,35 @@
 const OFFERS_COUNT = 10;
 
+const HousingType = {
+  ANY: 'any',
+  BUNGALOW: 'bungalow',
+  FLAT: 'flat',
+  HOTEL: 'hotel',
+  HOUSE: 'house',
+  PALACE: 'palace',
+};
+
+const HousingPrice = {
+  ANY: 'any',
+  MIDDLE: 'middle',
+  LOW: 'low',
+  HIGH: 'high',
+};
+
+const HousingRooms = {
+  ANY: 'any',
+  ONE: '1',
+  TWO: '2',
+  THREE: '3',
+};
+
+const HousingGuests = {
+  ANY: 'any',
+  TWO: '2',
+  ONE: '1',
+  ZERO: '0',
+};
+
 const Price = {
   MIDDLE: 10000,
   HIGH: 50000
@@ -12,23 +42,24 @@ const housingRooms = offerFiltersForm.querySelector('#housing-rooms');
 const housingGuests = offerFiltersForm.querySelector('#housing-guests');
 const housingFeatures = offerFiltersForm.querySelectorAll('.map__checkbox');
 
-const filterByType = (housing, type) => type === 'any' || housing.offer.type === type;
+const filterByType = (housing, type) => type === HousingType.ANY || housing.offer.type === type;
 
 const filterByPrice = (housing, price) => {
-  if (price === 'any') {
-    return true;
-  } else if (price === 'low') {
-    return housing.offer.price < Price.MIDDLE;
-  } else if (price === 'middle') {
-    return housing.offer.price >= Price.MIDDLE && housing.offer.price <= Price.HIGH;
-  } else if (price === 'high') {
-    return housing.offer.price > Price.HIGH;
+  switch (price) {
+    case HousingPrice.ANY:
+      return true;
+    case HousingPrice.LOW:
+      return housing.offer.price < Price.MIDDLE;
+    case HousingPrice.MIDDLE:
+      return housing.offer.price >= Price.MIDDLE && housing.offer.price <= Price.HIGH;
+    case HousingPrice.HIGH:
+      return housing.offer.price > Price.HIGH;
   }
 };
 
-const filterByRooms = (housing, rooms) => rooms === 'any' || housing.offer.rooms === +rooms;
+const filterByRooms = (housing, rooms) => rooms === HousingRooms.ANY || housing.offer.rooms === +rooms;
 
-const filterByGuests = (housing, guests) => guests === 'any' || housing.offer.guests === +guests;
+const filterByGuests = (housing, guests) => guests === HousingGuests.ANY || housing.offer.guests === +guests;
 
 const filterByFeatures = (housing, features) => {
   if (!features.length) {
