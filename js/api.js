@@ -1,5 +1,5 @@
-const SERVER_URL_GET_DATA = 'https://28.javascript.pages.academy/keksobooking/data';
-const SERVER_URL_POST = 'https://28.javascript.pages.academy/keksobooking';
+const SERVER_URL_GET_DATA = 'https://28.javascript.htmlacademy.pro/keksobooking/data';
+const SERVER_URL_POST = 'https://28.javascript.htmlacademy.pro/keksobooking ';
 const GET_ALERT_MESSAGE = 'Не удалось загрузить объявления.';
 const SEND_ALERT_MESSAGE = 'Не удалось отправить объявление.';
 
